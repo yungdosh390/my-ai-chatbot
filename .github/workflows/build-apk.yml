@@ -39,10 +39,11 @@ jobs:
     cmdline-tools-version: 12266719
 
 - name: Accept Android SDK licenses
-  run: |
-    yes | sdkmanager --licenses
+  run: | 
+   yes | sdkmanager --licenses
     sdkmanager "build-tools;37.0.0" "platform-tools"
-android.accept_sdk_license = True
+    
+    android.accept_sdk_license = True
 
       - name: Build APK
         run: |
