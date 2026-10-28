@@ -33,15 +33,13 @@ jobs:
           python3 -m pip install --user buildozer cython==0.29.36
 
      
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - - name: Set up Android SDK
+  uses: android-actions/setup-android@v3
+  with:
+    cmdline-tools-version: 12266719
 
-      - name: Install Android SDK components
-        run: |
-          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
-          echo "ANDROIDSDK=$ANDROID_HOME" >> "$GITHUB_ENV"
-
-
+- name: Accept Android licenses
+  run: yes | sdkmanager --licenses
 
       - name: Build APK
         run: |
