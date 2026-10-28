@@ -32,11 +32,15 @@ jobs:
           python3 -m pip install --user --upgrade pip
           python3 -m pip install --user buildozer cython==0.29.36
 
-      - name: Install Android SDK tools
+     
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK components
         run: |
-          yes | sudo apt-get install -y android-sdk
-          yes | sudo apt-get install -y google-android-platform-35-installer || true
-          yes | sudo apt-get install -y google-android-build-tools-35-installer || true
+          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+          echo "ANDROIDSDK=$ANDROID_HOME" >> "$GITHUB_ENV"
+
 
 
       - name: Build APK
