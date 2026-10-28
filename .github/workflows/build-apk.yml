@@ -32,6 +32,13 @@ jobs:
           python3 -m pip install --user --upgrade pip
           python3 -m pip install --user buildozer cython==0.29.36
 
+      - name: Install Android SDK tools
+        run: |
+          yes | sudo apt-get install -y android-sdk
+          yes | sudo apt-get install -y google-android-platform-35-installer || true
+          yes | sudo apt-get install -y google-android-build-tools-35-installer || true
+
+
       - name: Build APK
         run: |
           export PATH="$HOME/.local/bin:$PATH"
